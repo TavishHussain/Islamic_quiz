@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic Quiz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        #quiz-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        #user-name{
+            padding: 10px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            border-radius:10px;
+            outline-color: greenyellow;
+            border-color:greenyellow;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question h3 {
+            margin-top: 0;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .correct {
+            color: green;
+            font-weight: bold;
+        }
+        .wrong {
+            color: red;
+            font-weight: bold;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #result {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #eee;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .dark-mode {
+            background-color: #121212;
+            color: #ddd;
+        }
+        .dark-mode header {
+            background-color: #0d0d0d;
+        }
+        .dark-mode #quiz-container {
+            background-color: #4b4b4b98;
+        }
+        .dark-mode #result {
+            background-color: #171616;
+        }
+        .toggle-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 18px;
+            text-align: center;
+            line-height: 40px;
+            transition: background-color 0.3s;
+        }
+        .toggle-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Islamic Quiz</h1>
+</header>
+
+<div id="quiz-container">
+    <form method="POST" action="">
+        <div class="question">
+            <h3>Enter your name:</h3>
+            <input type="text" id="user-name" name="user-name" placeholder="Your Name" required>
+        </div>
+
+        <!-- Questions -->
+        <div class="question">
+            <h3>1. Who is the last prophet in Islam?</h3>
+            <div class="options">
+                <label><input type="radio" name="q1" value="wrong"> Prophet Musa (AS)</label>
+                <label><input type="radio" name="q1" value="wrong"> Prophet Isa (AS)</label>
+                <label><input type="radio" name="q1" value="correct"> Prophet Muhammad (SAW)</label>
+                <label><input type="radio" name="q1" value="wrong"> Prophet Ibrahim (AS)</label>
+            </div>
+        </div>
+        <div class="question">
+            <h3>2. How many times do Muslims pray daily?</h3>
+            <div class="options">
+                <label><input type="radio" name="q2" value="wrong"> 3</label>
+                <label><input type="radio" name="q2" value="correct"> 5</label>
+                <label><input type="radio" name="q2" value="wrong"> 7</label>
+                <label><input type="radio" name="q2" value="wrong"> 6</label>
+            </div>
+        </div>
+        <div class="question">
+            <h3>3. What is the holy book of Islam?</h3>
+            <div class="options">
+                <label><input type="radio" name="q3" value="wrong"> Bible</label>
+                <label><input type="radio" name="q3" value="wrong"> Torah</label>
+                <label><input type="radio" name="q3" value="correct"> Quran</label>
+                <label><input type="radio" name="q3" value="wrong"> Psalms</label>
+            </div>
+        </div>
+        <div class="question">
+            <h3>4. In which city is the Kaaba located?</h3>
+            <div class="options">
+                <label><input type="radio" name="q4" value="correct"> Mecca</label>
+                <label><input type="radio" name="q4" value="wrong"> Medina</label>
+                <label><input type="radio" name="q4" value="wrong"> Jerusalem</label>
+                <label><input type="radio" name="q4" value="wrong"> Cairo</label>
+            </div>
+        </div>
+        <div class="question">
+            <h3>5. What is the name of the Islamic month of fasting?</h3>
+            <div class="options">
+                <label><input type="radio" name="q5" value="wrong"> Muharram</label>
+                <label><input type="radio" name="q5" value="correct"> Ramadan</label>
+                <label><input type="radio" name="q5" value="wrong"> Shawwal</label>
+                <label><input type="radio" name="q5" value="wrong"> Rabi' al-Awwal</label>
+            </div>
+        </div>
+        <div class="question">
+            <h3>6. What is the first month of the Islamic calendar?</h3>
+            <div class="options">
+                <label><input type="radio" name="q6" value="correct"> Muharram</label>
+                <label><input type="radio" name="q6" value="wrong"> Ramadan</label>
+                <label><input type="radio" name="q6" value="wrong"> Rabi' al-Awwal</label>
+                <label><input type="radio" name="q6" value="wrong"> Dhul-Hijjah</label>
+            </div>
+        </div>
+        <div class="question">
+            <h3>7. Which angel revealed the Quran to Prophet Muhammad (SAW)?</h3>
+            <div class="options">
+                <label><input type="radio" name="q7" value="wrong"> Angel Mikail (AS)</label>
+                <label><input type="radio" name="q7" value="correct"> Angel Jibreel (AS)</label>
+                <label><input type="radio" name="q7" value="wrong"> Angel Israfil (AS)</label>
+                <label><input type="radio" name="q7" value="wrong"> Angel Azrael (AS)</label>
+            </div>
+        </div>
+        <div class="question">
+            <h3>8. What is the Islamic term for charity?</h3>
+            <div class="options">
+                <label><input type="radio" name="q8" value="wrong"> Salah</label>
+                <label><input type="radio" name="q8" value="wrong"> Hajj</label>
+                <label><input type="radio" name="q8" value="correct"> Zakat</label>
+                <label><input type="radio" name="q8" value="wrong"> Sawm</label>
+            </div>
+        </div>
+        <div class="question">
+            <h3>9. How many chapters are in the Quran?</h3>
+            <div class="options">
+                <label><input type="radio" name="q9" value="wrong"> 100</label>
+                <label><input type="radio" name="q9" value="correct"> 114</label>
+                <label><input type="radio" name="q9" value="wrong"> 120</label>
+                <label><input type="radio" name="q9" value="wrong"> 130</label>
+            </div>
+        </div>
+        <div class="question">
+            <h3>10. What is the second holiest city in Islam?</h3>
+            <div class="options">
+                <label><input type="radio" name="q10" value="correct"> Medina</label>
+                <label><input type="radio" name="q10" value="wrong"> Mecca</label>
+                <label><input type="radio" name="q10" value="wrong"> Jerusalem</label>
+                <label><input type="radio" name="q10" value="wrong"> Cairo</label>
+            </div>
+        </div>
+
+        <button type="button" onclick="calculateScore()">Submit</button>
+        <div id="result"></div>
+    </form>
+
+    <p class="created-by" style="text-align: center;">This Website is Created By Tavish</p>
+    <center><img src="my.jpg" height="50px" style="border-radius: 50%; opacity: 0.9;"></center>
+</div>
+
+<div class="toggle-btn" onclick="toggleDarkMode()"><i class="fas fa-sun" id="mode-icon"></i></div>
+
+<script>
+    function calculateScore() {
+        const userName = document.getElementById('user-name').value.trim();
+        if (!userName) {
+            alert('Enter your name.');
+            return;
+        }
+
+        let score = 0;
+        const totalQuestions = 10;
+
+        for (let i = 1; i <= totalQuestions; i++) {
+            const selectedOption = document.querySelector(`input[name="q${i}"]:checked`);
+            const labels = document.querySelectorAll(`input[name="q${i}"]`);
+
+            if (selectedOption) {
+                if (selectedOption.value === "correct") {
+                    score++;
+                    selectedOption.parentElement.classList.add('correct');
+                } else {
+                    selectedOption.parentElement.classList.add('wrong');
+                }
+            }
+
+            labels.forEach(label => {
+                if (label.value === "correct") {
+                    label.parentElement.classList.add('correct');
+                }
+            });
+        }
+
+        const result = document.getElementById('result');
+        result.style.display = 'block';
+        result.innerHTML = `Hello, ${userName}! You scored ${score} out of ${totalQuestions}.`;
+
+        if (score === totalQuestions) {
+            result.innerHTML += ' Excellent! You know your Islamic knowledge well.';
+        } else if (score >= 7) {
+            result.innerHTML += ' Good job! You have a strong understanding.';
+        } else if (score >= 4) {
+            result.innerHTML += ' Not bad! But there’s room for improvement.';
+        } else {
+            result.innerHTML += ' You might want to study more about Islam.';
+        }
+
+        // Send the user's name and score to the server
+        fetch('', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `user-name=${encodeURIComponent(userName)}&score=${score}`
+        });
+    }
+
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+        const modeIcon = document.getElementById('mode-icon');
+        if (document.body.classList.contains('dark-mode')) {
+            modeIcon.classList.remove('fa-sun');
+            modeIcon.classList.add('fa-moon');
+        } else {
+            modeIcon.classList.remove('fa-moon');
+            modeIcon.classList.add('fa-sun');
+        }
+    }
+</script>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $name = $_POST['user-name'];
+    $score = $_POST['score'];
+    
+    // Validate input
+    if (!empty($name) && is_numeric($score)) {
+        // Sanitize input
+        $name = htmlspecialchars($name);
+        $score = intval($score);
+
+        // Append to file
+        $file = 'results.txt';
+        $entry = "Name: $name, Score: $score\n";
+        file_put_contents($file, $entry, FILE_APPEND);
+    }
+}
+?>
+
+</body>
+</html>
